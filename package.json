@@ -1,0 +1,21 @@
+{
+  "name": "jsdvv",
+  "version": "1.0.0",
+  "description": "Dotted Version Vector Sets ==========================",
+  "scripts": {
+    "test": "jest --config ./jest.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightuponcloud/jsdvv.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lightuponcloud/jsdvv/issues"
+  },
+  "homepage": "https://github.com/lightuponcloud/jsdvv#readme",
+  "dependencies": {
+    "jest": "^29.2.2"
+  }
+}
