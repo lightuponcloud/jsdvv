@@ -10,6 +10,9 @@
 
 $.dvvset = function(options){
  var API = {
+    //
+    // The following comparator is used for compatability with Erlang implementation of DVV sets
+    //
     _cmp_fun: function(a,b){
 	if (typeof a === 'string' && typeof b === 'string') {
 	    return a > b;
