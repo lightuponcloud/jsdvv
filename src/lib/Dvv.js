@@ -204,29 +204,24 @@ module.exports = class Dvv {
 		if (!Array.isArray(clock1.getList)) throw 'clock1 should be a list';
 		if (!Array.isArray(clock2.getList)) throw 'clock2 should be a list';
 		if (clock1.getList.length === 2 && clock2.getList.length === 2) return this._equal(clock1.getEntries, clock2.getEntries); // DVVSet
-
 		return this._equal(clock1, clock2);
 	}
 
 	_equal(vector1, vector2) {
-		// new2 function
-		// if (vector1.length === 0 && vector2.length === 0) return true;
-		// if (vector1[0].length < 3 && vector2[0].length < 3) return false;
-		// if (vector1[0][0] !== vector2[0][0]) return false;
-		// if (vector1[0][1] !== vector2[0][1]) return false;
-		// if (vector1[0][2] !== vector2[0][2]) return false;
-		// return this._equal(vector1.slice(1), vector2.slice(1));
+	    if(vector1.length == 0 && vector2.length == 0) return true;
 
-		// old function
-		if (vector1.length > 0 && vector1[0].length > 0 && vector2.length > 0 && vector2[0].length > 0) {
-			if (vector1[0][0] == vector2[0][0]) {
-				if (vector1[0].length > 1 && vector2[0].length > 1 && vector1[0][1] == vector2[0][1]) {
-					if (vector1[0][2] == vector2[0][2])
-						return this._equal(vector1.slice(0).splice(1, vector1.length), vector2.slice(0).splice(1, vector2.length));
-				}
+	    if (vector1.length > 0 && vector1[0].length > 0 && vector2.length > 0 && vector2[0].length > 0) {
+		if (vector1[0][0] == vector2[0][0]) {
+		    if (vector1[0].length > 1 && vector2[0].length > 1 && vector1[0][1] == vector2[0][1]) {
+			if (vector1[0][2].length == vector2[0][2].length) {
+			    var v1 = JSON.parse(JSON.stringify(vector1)).slice(1);
+			    var v2 = JSON.parse(JSON.stringify(vector2)).slice(1);
+			    return this._equal(v1, v2);
 			}
+		    }
 		}
-		return false;
+	    }
+	    return false;
 	}
 
 	_greater(vector1, vector2, strict) {
