@@ -167,7 +167,7 @@ describe('test_event', () => {
 });
 
 describe('test_less', () => {
-	const A = dvv.create(dvv.new_list('v1'), 'a'); // ['a']
+	const A = dvv.create(dvv.new_list('v1'), ['a']); // ['a']
 	const B = dvv.create(dvv.new_list_with_history(dvv.join(A), ['v2']), 'a');
 	const B2 = dvv.create(dvv.new_list_with_history(dvv.join(A), ['v2']), 'b');
 	const B3 = dvv.create(dvv.new_list_with_history(dvv.join(A), ['v2']), 'z');
@@ -203,7 +203,7 @@ describe('test_equal', () => {
 describe('test_size', () => {
 	const clock = new Clock([['a', 4, ['v5', 'v0']], ['b', 0, []], ['c', 1, ['v3']]], ['v4', 'v1']);
 
-	test('1', () => expect(dvv.size(dvv.new_list(["v1"]))).toBe(1));
+	test('1', () => expect(dvv.size(dvv.new_list(['v1']))).toBe(1));
 	test('2', () => expect(dvv.size(clock)).toBe(5));
 });
 

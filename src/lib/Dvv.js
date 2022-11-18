@@ -90,13 +90,11 @@ module.exports = class Dvv {
 		if (counter1 >= counter2) {
 			return counter1 - len1 >= counter2 - len2
 				? [the_id, counter1, values1]
-				// : [the_id, counter1, values1.slice(0).splice(0, counter1 - counter2 + len2)];
 				: [the_id, counter1, values1.slice(0, counter1 - counter2 + len2)];
 		}
 
 		return counter2 - len2 >= counter1 - len1
 			? [the_id, counter2, values2]
-			// : [the_id, counter2, values2.slice(0).splice(0, counter2 - counter1 + len1)]
 			: [the_id, counter2, values2.slice(0, counter2 - counter1 + len1)];
 	}
 
@@ -208,20 +206,27 @@ module.exports = class Dvv {
 	}
 
 	_equal(vector1, vector2) {
-	    if(vector1.length == 0 && vector2.length == 0) return true;
+		if (vector1.length === 0 && vector2.length === 0) return true;
+		
+    if (vector1.length === 0 || vector1[0].length < 3 || vector2.length === 0 || vector2[0].length < 3) return false;
+    if (vector1[0][0] !== vector2[0][0]) return false;
+    if (vector1[0][1] !== vector2[0][1]) return false;
+    if (vector1[0][2].length !== vector2[0][2].length) return false;
 
-	    if (vector1.length > 0 && vector1[0].length > 0 && vector2.length > 0 && vector2[0].length > 0) {
-		if (vector1[0][0] == vector2[0][0]) {
-		    if (vector1[0].length > 1 && vector2[0].length > 1 && vector1[0][1] == vector2[0][1]) {
-			if (vector1[0][2].length == vector2[0][2].length) {
-			    var v1 = JSON.parse(JSON.stringify(vector1)).slice(1);
-			    var v2 = JSON.parse(JSON.stringify(vector2)).slice(1);
-			    return this._equal(v1, v2);
-			}
-		    }
-		}
-	    }
-	    return false;
+    return this._equal(vector1.slice(1), vector2.slice(1));
+
+		// solution 2
+		// if (vector1.length === 0 && vector2.length === 0) return true;
+		// if (vector1.length > 0 && vector1[0].length > 0 && vector2.length > 0 && vector2[0].length > 0) {
+		// 	if (vector1[0][0] == vector2[0][0]) {
+		// 		if (vector1[0].length > 1 && vector2[0].length > 1 && vector1[0][1] == vector2[0][1]) {
+		// 			if (vector1[0][2].length == vector2[0][2].length) {
+		// 				return this._equal(vector1.slice(1), vector2.slice(1));
+		// 			}
+		// 		}
+		// 	}
+		// }
+		// return false;
 	}
 
 	_greater(vector1, vector2, strict) {
